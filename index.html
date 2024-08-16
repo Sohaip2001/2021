@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تطبيق الانتخابات</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- شاشة تسجيل الدخول -->
+    <div id="login-screen" class="screen">
+        <div class="login-container">
+            <h1>تسجيل الدخول</h1>
+            <form id="login-form">
+                <label for="national-id">الرقم الوطني:</label>
+                <input type="text" id="national-id" required>
+
+                <label for="password">كلمة السر:</label>
+                <input type="password" id="password" required>
+
+                <div class="captcha">
+                    <label for="captcha">أدخل النص التالي:</label>
+                    <input type="text" id="captcha" required>
+                    <p id="captcha-text">2024</p>
+                    <button type="button" id="refresh-captcha" class="button-secondary">تحديث</button>
+                </div>
+
+                <button type="submit" class="button-primary">تسجيل الدخول</button>
+                <p class="forgot-password"><a href="#" id="forgot-password">هل نسيت كلمة السر؟</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- القائمة الرئيسية -->
+    <div id="main-screen" class="screen hidden">
+        <header>
+            <h1>الهيئة المستقلة للانتخاب</h1>
+        </header>
+        <div class="icon-menu">
+            <div class="icon-item">
+                <a href="#" id="vote-tab" class="icon-link"><i class="fas fa-vote-yea"></i></a>
+                <p>التصويت</p>
+            </div>
+            <div class="icon-item">
+                <a href="#" id="candidates-tab" class="icon-link"><i class="fas fa-users"></i></a>
+                <p>معلومات المرشحين</p>
+            </div>
+            <div class="icon-item">
+                <a href="#" id="rules-tab" class="icon-link"><i class="fas fa-gavel"></i></a>
+                <p>القوانين والتعليمات</p>
+            </div>
+            <div class="icon-item">
+                <a href="#" id="funding-tab" class="icon-link"><i class="fas fa-dollar-sign"></i></a>
+                <p>تمويل المرشحين</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- قسم التصويت -->
+    <div id="vote-section" class="screen hidden">
+        <h2>التصويت</h2>
+        <form id="vote-form">
+            <label for="governorate">اختر المحافظة:</label>
+            <select id="governorate" name="governorate" required>
+                <option value="">اختر محافظة</option>
+                <option value="amman">عمان</option>
+                <option value="zarqa">الزرقاء</option>
+                <option value="irbid">إربد</option>
+                <option value="mafraq">المفرق</option>
+                <option value="karak">الكرك</option>
+                <option value="aqaba">العقبة</option>
+                <option value="madaba">مادبا</option>
+            </select>
+
+            <label for="district">اختر اللواء:</label>
+            <select id="district" name="district" required>
+                <option value="">اختر لواء</option>
+            </select>
+
+            <label for="candidate">اختر المرشح:</label>
+            <select id="candidate" name="candidate" required>
+                <option value="">اختر مرشح</option>
+            </select>
+
+            <label for="comment">تعليقات إضافية:</label>
+            <textarea id="comment" name="comment" rows="4" placeholder="اكتب تعليقك هنا (اختياري)"></textarea>
+
+            <label for="confirm">أؤكد أن جميع المعلومات صحيحة:</label>
+            <input type="checkbox" id="confirm" name="confirm" required>
+
+            <button type="submit" class="button-primary">تأكيد التصويت</button>
+            <button type="button" id="face-auth" class="button-secondary">التحقق ببصمة الوجه</button>
+        </form>
+        <button id="back-to-main" class="button-secondary">العودة</button>
+    </div>
+
+    <!-- قسم معلومات المرشحين -->
+    <div id="candidates-section" class="screen hidden">
+        <h2>معلومات المرشحين</h2>
+        <div id="candidates-list">
+            <div class="candidate">
+                <h3>مرشح 1</h3>
+                <p><strong>سيرة ذاتية:</strong> [معلومات عن مرشح 1]</p>
+                <p><strong>الإنجازات:</strong> [إنجازات مرشح 1]</p>
+                <p><strong>الأهداف:</strong> [أهداف مرشح 1]</p>
+            </div>
+            <div class="candidate">
+                <h3>مرشح 2</h3>
+                <p><strong>سيرة ذاتية:</strong> [معلومات عن مرشح 2]</p>
+                <p><strong>الإنجازات:</strong> [إنجازات مرشح 2]</p>
+                <p><strong>الأهداف:</strong> [أهداف مرشح 2]</p>
+            </div>
+            <div class="candidate">
+                <h3>مرشح 3</h3>
+                <p><strong>سيرة ذاتية:</strong> [معلومات عن مرشح 3]</p>
+                <p><strong>الإنجازات:</strong> [إنجازات مرشح 3]</p>
+                <p><strong>الأهداف:</strong> [أهداف مرشح 3]</p>
+            </div>
+        </div>
+        <button id="back-to-main" class="button-secondary">العودة</button>
+    </div>
+
+    <!-- قسم القوانين والتعليمات -->
+    <div id="rules-section" class="screen hidden">
+        <h2>القوانين والعقوبات</h2>
+        <div class="rules-content">
+           
+          <h3>قوانين</h3>
+            <p>أ- لكل أردني بلغ ثماني عشرة سنة شمسية من عمره قبل تسعين يوماً من التاريخ المحدد لإجراء الاقتراع الحق في انتخاب أعضاء مجلس النواب وفق أحكام هذا القانون.
+
+</p>
+            <p>ب- يوقف استعمال حق الانتخاب لمنتسبي القوات المسلحة/ الجيش العربي والمخابرات العامة والأمن العام وقوات الدرك والدفاع المدني في أثناء وجودهم في الخدمة الفعلية باستثناء المستخدم المدني.
+
+</p>
+            <h3>عقوبات</h3>
+            <p>يعاقب بالحبس لمدة تتراوح بين ستة أشهر وسنتين كل من:
+
+</p>
+          <p>1.أعطى أو عرض مالاً أو منفعة لناخب للتأثير على تصويته.
+</p>
+          <p>2.طلب أو قبل مالاً أو منفعة للتصويت بطريقة معينة.
+</p>
+          <p>3.قدم معلومات كيدية للإضرار بأحد المترشحين.
+</p>
+        </div>
+        <button id="back-to-main" class="button-secondary">العودة</button>
+    </div>
+
+    <!-- قسم تمويل المرشحين -->
+    <div id="funding-section" class="screen hidden">
+        <h2>تمويل المرشحين</h2>
+        <form id="funding-form">
+            <label for="funding-governorate">اختر المحافظة:</label>
+            <select id="funding-governorate" name="funding-governorate" required>
+                <option value="">اختر محافظة</option>
+                <option value="amman">عمان</option>
+                <option value="zarqa">الزرقاء</option>
+                <option value="irbid">إربد</option>
+                <option value="mafraq">المفرق</option>
+                <option value="karak">الكرك</option>
+                <option value="aqaba">العقبة</option>
+                <option value="madaba">مادبا</option>
+            </select>
+
+            <label for="funding-district">اختر اللواء:</label>
+            <select id="funding-district" name="funding-district" required>
+                <option value="">اختر لواء</option>
+            </select>
+
+            <label for="funding-list">اختر القائمة الانتخابية:</label>
+            <input type="text" id="funding-list" name="funding-list" required>
+
+            <label for="funding-candidate">اختر رقم المرشح:</label>
+            <input type="text" id="funding-candidate" name="funding-candidate" required>
+
+            <label for="phone-number">رقم الهاتف:</label>
+            <input type="tel" id="phone-number" name="phone-number" required placeholder="مثال: 0791234567">
+
+            <button type="submit" class="button-primary">تأكيد التمويل</button>
+        </form>
+        <button id="back-to-main-funding" class="button-secondary">العودة</button>
+    </div>
+
+    <!-- شاشة تأكيد التصويت -->
+    <div id="confirmation-screen" class="screen hidden">
+        <h2>تم التصويت</h2>
+        <p>تم تسجيل تصويتك بنجاح. لا يمكنك التصويت مرة أخرى.</p>
+        <button id="back-to-main-from-confirmation" class="button-secondary">العودة</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
